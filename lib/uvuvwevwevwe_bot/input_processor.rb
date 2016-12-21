@@ -6,17 +6,10 @@ class Object.const_get($namespace_class)::InputProcessor
     @bot = bot
 
     return unless message
-
-    # uncomment to ignore edited messages
     return if message.edit_date
-
-    # uncomment to ignore other type of messages
     return unless message.text
-
-    # uncomment to log incoming messages
-    # $namespace_class.constantize.log("INCOMING #{message.inspect}")
-
     return unless Time.now.to_i - message.date <= 20
+    return unless UvuvwevwevweBot::SpamUtil.add?(message.chat.id, message.chat.type.in?(%w(group supergroup)))
 
     text = message.text.sub("@#{$bot_username}", '')
 
