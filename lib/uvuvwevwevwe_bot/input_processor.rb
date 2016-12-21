@@ -21,11 +21,12 @@ class Object.const_get($namespace_class)::InputProcessor
     text = message.text.sub("@#{$bot_username}", '')
 
     if message.from.id == $admin_id && text =~ /reload/i
-      Rake::Task["#{$namespace}:reload"].execute
+      UvuvwevwevweBot.reload!
+      reply(message, 'Reloaded!')
       return
     end
 
-    if text =~ /(?:nama|name)/i && text =~ /(?:siapa|who)/i
+    if text =~ /(?:nama|name)/i && text =~ /(?:siapa|what)/i
       reply(message, 'Uvuvwevwevwe Onyetenyevwe Ugwemubwem Ossas')
     end
     # ADD YOUR BOT LOGIC HERE
