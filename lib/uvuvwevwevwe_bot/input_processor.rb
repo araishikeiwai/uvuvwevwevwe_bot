@@ -9,7 +9,6 @@ class Object.const_get($namespace_class)::InputProcessor
     return if message.edit_date
     return unless message.text
     return unless Time.now.to_i - message.date <= 20
-    return unless UvuvwevwevweBot::SpamUtil.add?(message.chat.id, message.chat.type.in?(%w(group supergroup)))
 
     text = message.text.sub("@#{$bot_username}", '')
 
@@ -20,6 +19,7 @@ class Object.const_get($namespace_class)::InputProcessor
     end
 
     if text =~ /(?:nama|name)/i && text =~ /(?:siapa|what)/i
+      return unless UvuvwevwevweBot::SpamUtil.add?(message.chat.id, message.chat.type.in?(%w(group supergroup)))
       reply(message, 'Uvuvwevwevwe Onyetenyevwe Ugwemubwem Ossas')
     end
     # ADD YOUR BOT LOGIC HERE
